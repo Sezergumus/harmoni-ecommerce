@@ -1,0 +1,122 @@
+{
+    "1": {
+      "name": "Screwdriver",
+      "price": 59.99,
+      "description": "A tool for driving screws",
+      "image": "/products/1/screwdriver.webp",
+      "featured": false,
+      "trending": false,
+      "category": "home",
+      "id": 1
+    },
+    "2": {
+      "name": "Potted Plant",
+      "price": 29.99,
+      "description": "A plant that is potted",
+      "image": "/products/2/potted-plant.png",
+      "featured": true,
+      "trending": true,
+      "category": "home",
+      "id": 2
+    },
+    "3": {
+      "name": "Frame",
+      "price": 59.99,
+      "description": "A frame for holding pictures",
+      "image": "/products/3/frame.webp",
+      "featured": true,
+      "trending": true,
+      "category": "home",
+      "id": 3
+    },
+    "4": {
+      "name": "Wing Chair",
+      "price": 29.99,
+      "description": "A chair with wings",
+      "image": "/products/4/wing-chair.webp",
+      "featured": true,
+      "trending": true,
+      "category": "home",
+      "id": 4
+    },
+    "5": {
+      "name": "Coffee Table",
+      "price": 59.99,
+      "description": "A table for coffee",
+      "image": "/products/5/coffee-table.webp",
+      "featured": true,
+      "trending": true,
+      "category": "home",
+      "id": 5
+    },
+    "6": {
+      "name": "Microwave Oven",
+      "price": 29.99,
+      "description": "A microwave oven",
+      "image": "/products/6/microwave-oven.webp",
+      "featured": true,
+      "trending": true,
+      "category": "kitchen",
+      "id": 6
+    },
+    "7": {
+      "name": "Hanging Storage",
+      "price": 59.99,
+      "description": "A storage for hanging",
+      "image": "/products/7/hanging-storage.webp",
+      "featured": true,
+      "trending": true,
+      "category": "kitchen",
+      "id": 7
+    },
+    "8": {
+      "name": "Kitchen Organizer",
+      "price": 29.99,
+      "description": "An organizer for the kitchen",
+      "image": "/products/8/kitchen-organizer.webp",
+      "featured": true,
+      "trending": true,
+      "category": "kitchen",
+      "id": 8
+    },
+    "9": {
+      "name": "Skin Serum",
+      "price": 59.99,
+      "description": "A serum for the skin",
+      "image": "/products/9/skincare.jpg",
+      "featured": false,
+      "trending": false,
+      "category": "skincare",
+      "id": 9
+    },
+    "10": {
+      "name": "Sunscreen",
+      "price": 29.99,
+      "description": "A screen for the sun",
+      "image": "/products/10/sunscreen.jpg",
+      "featured": true,
+      "trending": true,
+      "category": "skincare",
+      "id": 10
+    },
+    "11": {
+      "name": "Calculator",
+      "price": 59.99,
+      "description": "A calculator for calculating",
+      "image": "/products/11/calculator.jpg",
+      "featured": false,
+      "trending": false,
+      "category": "tech",
+      "id": 11
+    },
+    "12": {
+      "name": "Arduino",
+      "price": 29.99,
+      "description": "A microcontroller for making things",
+      "image": "/products/12/arduino.jpg",
+      "featured": false,
+      "trending": false,
+      "category": "tech",
+      "id": 12
+    }
+  }

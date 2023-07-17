@@ -2,26 +2,352 @@
 @tailwind components;
 @tailwind utilities;
 
-:root {
-  --foreground-rgb: 0, 0, 0;
-  --background-start-rgb: 214, 219, 220;
-  --background-end-rgb: 255, 255, 255;
+html{
+  margin: 0;
+  padding: 0;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --foreground-rgb: 255, 255, 255;
-    --background-start-rgb: 0, 0, 0;
-    --background-end-rgb: 0, 0, 0;
+.container{
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 1rem;
+}
+
+.navbar{
+  box-shadow: 0 4px 5px -5px rgba(0,0,0,.23);
+}
+
+.nav-container{
+  transition: height .1s linear;
+}
+
+.scrolled{
+  height: 6rem;
+}
+
+.home-grid{
+  grid-gap: 1.3rem;
+  display: grid;
+  gap: 1.3rem;
+  grid-template-areas:
+      "one two three"
+      "one two four";
+  grid-template-columns: 2fr 1fr 1fr;
+  grid-template-rows: 1fr 1fr;
+  height: 55vh;
+  margin-top: 1.3rem;
+}
+
+.home-grid-one{
+  grid-area: one;
+}
+
+.home-grid-two{
+  grid-area: two;
+}
+
+.home-grid-three{
+  grid-area: three;
+}
+
+.home-grid-four{
+  grid-area: four;
+}
+
+.home-grid img{
+  height: 100%;
+  object-fit: cover;
+  object-position: 50% 50%;
+  width: 100%;
+  filter: brightness(0.7);
+  transition: all .3s ease-in;
+}
+
+.home-grid > div{
+  position: relative;
+}
+
+.home-grid > div:hover img{
+  filter: brightness(0.5);
+}
+
+.main-description{
+  position: absolute;
+  bottom: 1rem;
+  left: 1rem;
+  color: white;
+  font-size: 1.9rem;
+  font-weight: 600;
+}
+
+.featured-grid{
+  grid-auto-rows: 1fr;
+  grid-gap: 1.3rem;
+  display: grid;
+  gap: 1.3rem;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+}
+
+.featured-product, .trending-product, .category-product{
+  cursor: pointer;
+  outline: 2px solid rgba(0,0,0,.205);
+  outline-offset: -2px;
+  transition: all .15s ease-in;
+}
+
+.featured-product:hover, .trending-product:hover, .category-product:hover{
+  outline: 2px solid rgba(0,0,0,.7);
+}
+
+.featured-product-details, .trending-product-details, .category-product-details{
+  font-size: 1rem;
+  padding: 1rem;
+}
+
+.banner-btn{
+  background-color: #000;
+  border: 2px solid #000;
+  color: #fff;
+  cursor: pointer;
+  font-size: 1rem;
+  font-weight: 700;
+  padding: .6rem;
+  text-transform: uppercase;
+  transition: all .15s;
+}
+
+.banner-btn:hover{
+  background-color: initial;
+  color: #000;
+}
+
+.trending-products-slider::-webkit-scrollbar {
+  -ms-overflow-style: none;
+  display: none;
+  scrollbar-width: none;
+}
+
+.trending-product{
+  min-width: 210px;
+}
+
+.credit a:hover, .footer-links a:hover, .nav-links a:hover{
+  color: #FF0000;
+  transition: all .15s ease-in;
+}
+
+.nav-links svg:hover path{
+  fill: #FF0000;
+  transition: all .15s ease-in;
+}
+
+.all-products-filter-grid button{
+  transition: all .15s ease-in;
+}
+
+.all-products-filter-grid .active{
+  background-color: black;
+}
+
+.all-products-grid{
+  grid-auto-rows: 1fr;
+  grid-gap: 1.3rem;
+  display: grid;
+  gap: 1.3rem;
+  grid-template-columns: repeat(4, minmax(250px, 1fr));
+}
+
+.all-products-filter-grid{
+  grid-auto-rows: 1fr;
+  grid-gap: 1.3rem;
+  display: grid;
+  gap: 1.3rem;
+  grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+}
+
+.quantity-btns button{
+  background-color: #fff;
+  border: none;
+  color: #000;
+  cursor: pointer;
+  font-size: 2rem;
+  height: 4rem;
+  width: 4rem;
+  transition: all .2s;
+}
+
+.quantity-btns .quantity-container{
+  height: 4rem;
+  outline-offset: -2px;
+  text-align: center;
+  width: 5rem;
+}
+
+.quantity-btn:hover{
+  background-color: #000;
+  color: #fff;
+}
+
+.product-btns button{
+    cursor: pointer;
+    font-size: 1rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    transition: all .2s;
+    width: 50%;
+    padding: 1rem;
+}
+
+.atc-btn, .checkout-btn{
+  border: 2px solid #000;
+}
+
+.buy-btn{
+  background-color: #FF0000;
+  border: 2px solid #FF0000;
+  color: #fff;
+}
+
+.atc-btn:hover, .checkout-btn:hover{
+  background-color: #000;
+  color: #fff;
+}
+
+.buy-btn:hover{
+  background-color: initial;
+  color: #FF0000;
+}
+
+.cart-container{
+  transition: all .4s ease;
+}
+
+.open-cart{
+  right: 0;
+}
+
+.closed-cart{
+  right: -100%;
+}
+
+.checkout-btn{
+  transition: all .2s;
+}
+
+.cart-item{
+    background-color: #f2f2f2;
+    border: 1px solid #717171;
+    border-radius: 3px;
+}
+
+.cart-item-image{
+  border-right: 1px solid #717171;
+}
+
+.cart-quantity-btn{
+  background-color: #fff;
+  border: none;
+  color: #000;
+  cursor: pointer;
+  font-size: 1rem;
+  height: 2rem;
+  width: 2rem;
+  transition: all .2s;
+}
+
+.cart-quantity-btn:hover{
+  background-color: #000;
+  color: #fff;
+}
+
+.cart-quantity-container{
+  height: 2rem;
+  outline-offset: -2px;
+  text-align: center;
+  width: 2.5rem;
+}
+
+.category-product img{
+  height: 300px;
+  object-fit: contain;
+  padding: 16px;
+}
+
+@media (max-width: 770px){
+  .home-grid{
+    grid-template-areas: 
+      "one two"
+      "three four";
+
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr 1fr;  
+    grid-gap: 0.65rem;
+    height: 100%;
+  }
+
+  .main-description{
+    font-size: 1.6rem;
+    bottom: 0.8rem;
+    left: 0.8rem;
+  }
+
+  .banner-text{
+    padding: 0 3rem;
   }
 }
 
-body {
-  color: rgb(var(--foreground-rgb));
-  background: linear-gradient(
-      to bottom,
-      transparent,
-      rgb(var(--background-end-rgb))
-    )
-    rgb(var(--background-start-rgb));
+/* media query for max width 600 */
+@media (max-width: 600px){
+  .banner-img{
+    display: none;
+  }
+  
+  .banner-text{
+    width: 100%;
+  }
+
+  .cart-container{
+    width: 100%;
+  }
+}
+
+@media (max-width: 500px){
+  .main-description{
+    font-size: 1.3rem;
+    bottom: 0.6rem;
+    left: 0.6rem;
+  }
+}
+
+@media (max-width: 1150px){
+  .all-products-grid{
+    grid-template-columns: repeat(3, minmax(250px, 1fr));
+  }
+}
+
+@media (max-width: 840px){
+  .all-products-grid{
+    grid-template-columns: repeat(2, minmax(250px, 1fr));
+  }
+}
+
+@media (max-width: 570px){
+  .all-products-grid{
+    grid-template-columns: repeat(1, minmax(250px, 1fr));
+  }
+}
+
+@media (max-width: 1000px){
+  .quantity-price{
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .product{
+    flex-direction: column;
+  }
+
+  .product > div{
+    width: 100%;
+  }
 }
