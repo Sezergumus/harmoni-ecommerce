@@ -51,8 +51,8 @@ export default function Trending() {
                                 if(product.trending == true){
                                     return (
                                         <div className="trending-product" key={index}>
-                                            <Link href={`/products/${product.id}`}>
-                                                <div className="trending-product-img">
+                                            <Link href={`/products/${product.link}`}>
+                                                <div className="trending-product-img p-2">
                                                     <Image src={product.image} alt="trending product" width={500} height={500}/>
                                                 </div>
                                                 <div className="trending-product-details">

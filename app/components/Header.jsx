@@ -1,24 +1,67 @@
 "use client"
 
-import React, { useEffect } from 'react'
+import React, { useState, useEffect } from 'react'
 import Link from 'next/link'
 
 export default function Header() {
+  const [quantity, setQuantity] = useState(null)
+
+  useEffect(() => {
+    const cart = JSON.parse(localStorage.getItem('cart'))
+
+    if(cart){
+      setQuantity(cart.length)
+    } else {
+      setQuantity(0)
+    }
+  }, [])
+
   // if scrolled any add class to navbar
   useEffect(() => {
     window.addEventListener('scroll', () => {
       const navbar = document.querySelector('.nav-container')
       navbar.classList.toggle('scrolled', window.scrollY > 0)
     })
+
+    return () => {
+      window.removeEventListener('scroll', () => {
+        const navbar = document.querySelector('.nav-container')
+        navbar.classList.toggle('scrolled', window.scrollY > 0)
+      })
+    }
   }, [])
 
-  const handleClick = () => {
+  const openCart = () => {
     const cartMenu = document.querySelector('.cart-container')
     const cartBg = document.querySelector('.cart-bg')
     cartMenu.classList.remove('closed-cart')
     cartMenu.classList.add('open-cart')
     cartBg.classList.toggle('hidden')
   }
+
+  const checkItems = () => {
+    const cart = JSON.parse(localStorage.getItem('cart'))
+
+    if(cart){
+      setQuantity(cart.length)
+    } else {
+      setQuantity(0)
+    }
+  }
+
+  useEffect(() => {
+    checkItems()
+
+    window.addEventListener('storage', () => {
+      checkItems()
+    })
+    
+    return () => {
+      window.removeEventListener('storage', () => {
+        checkItems()
+      })
+    }
+  }, [])
 
   return (
     <nav className="navbar sticky z-50 w-full top-0 bg-[#fff]">
@@ -34,12 +77,19 @@ export default function Header() {
             <Link href="/products">
               PRODUCTS
             </Link>
-            <button id="cart" aria-label="cart" onClick={handleClick}>
+            <button id="cart" aria-label="cart" onClick={openCart} className='relative'>
               <svg className="cursor-pointer" width="21" height="19" viewBox="0 0 21 19" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path d="M7.02827 18.7421C7.89085 18.7421 8.59011 18.0428 8.59011 17.1802C8.59011 16.3177 7.89085 15.6184 7.02827 15.6184C6.16569 15.6184 5.46643 16.3177 5.46643 17.1802C5.46643 18.0428 6.16569 18.7421 7.02827 18.7421Z" fill="black"/>
                 <path d="M17.9612 18.7421C18.8237 18.7421 19.523 18.0428 19.523 17.1802C19.523 16.3177 18.8237 15.6184 17.9612 15.6184C17.0986 15.6184 16.3993 16.3177 16.3993 17.1802C16.3993 18.0428 17.0986 18.7421 17.9612 18.7421Z" fill="black"/>
                 <path d="M20.7334 2.77129C20.6237 2.63709 20.4855 2.52901 20.3288 2.45489C20.1721 2.38076 20.0009 2.34246 19.8275 2.34276H4.97299L4.6738 0.645235C4.6419 0.464417 4.5473 0.300622 4.40663 0.182622C4.26596 0.0646212 4.08821 -3.85781e-05 3.9046 1.72682e-08H0.780919C0.573807 1.72682e-08 0.375177 0.0822754 0.228726 0.228726C0.0822752 0.375177 0 0.573807 0 0.780919C0 0.988032 0.0822752 1.18666 0.228726 1.33311C0.375177 1.47956 0.573807 1.56184 0.780919 1.56184H3.2496L5.47815 14.1922C5.51005 14.3731 5.60465 14.5368 5.74532 14.6548C5.88599 14.7728 6.06374 14.8375 6.24735 14.8375H18.7421C18.9492 14.8375 19.1478 14.7552 19.2943 14.6087C19.4407 14.4623 19.523 14.2637 19.523 14.0565C19.523 13.8494 19.4407 13.6508 19.2943 13.5044C19.1478 13.3579 18.9492 13.2756 18.7421 13.2756H6.90235L6.62708 11.7138H18.4219C18.6927 11.7134 18.9551 11.6195 19.1646 11.448C19.3742 11.2764 19.518 11.0377 19.5718 10.7723L20.9774 3.74402C21.0113 3.57393 21.007 3.39844 20.9648 3.23022C20.9226 3.062 20.8436 2.90525 20.7334 2.77129Z" fill="black"/>
               </svg>
+              {
+                quantity > 0 && (
+                  <div className="cart-quantity-icon bg-[#FF0000] rounded-full w-4 h-4 text-white absolute top-[-8px] right-[-8px] text-xs font-bold">
+                    <span className="cart-quantity">{quantity}</span>
+                  </div>
+                )
+              }
             </button>
           </div>
         </div>

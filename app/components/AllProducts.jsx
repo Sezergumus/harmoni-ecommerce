@@ -81,7 +81,7 @@ export default function AllProducts() {
                         allProductsArray.map((product, index) => {
                             return(
                                 <div className={`category-product ${product.category}`} key={index}>
-                                    <Link href={`/products/${product.id}`}>
+                                    <Link href={`/products/${product.link}`}>
                                         <div className="category-product-img">
                                             <Image src={product.image} alt="category product" width={500} height={500} />
                                         </div>

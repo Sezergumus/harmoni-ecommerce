@@ -17,8 +17,8 @@ export default function Featured() {
                             if(product.featured === true){
                                 return (
                                     <div className="featured-product" key={index}>
-                                    <Link href={`/products/${product.id}`}>
-                                        <div className="featured-product-img">
+                                    <Link href={`/products/${product.link}`}>
+                                        <div className="featured-product-img p-2">
                                             <Image src={product.image} alt="featured product" width={500} height={500}/>
                                         </div>
                                         <div className="featured-product-details">

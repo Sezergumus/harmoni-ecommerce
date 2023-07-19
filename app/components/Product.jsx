@@ -2,17 +2,52 @@
 
 import React, { useState } from 'react'
 import Image from 'next/image'
-import productImg from '@/public/products/1/screwdriver.webp'
 
 export default function Product(props) {
     const [quantity, setQuantity] = useState(1)
+    const [imageSrc, setImageSrc] = useState(props.params.image)
+        
+    const addToCart = (quantity) => {
+        let cart = JSON.parse(localStorage.getItem('cart'))
+        if(cart === null){
+            cart = []   
+        }
+        let item = {
+            name: props.params.name,
+            image: props.params.image,
+            price: props.params.price,
+            quantity: quantity,
+            link: props.params.link
+        }
+        if(cart.find(item => item.name === props.params.name)){
+            cart.find(item => item.name === props.params.name).quantity += quantity
+        }else{
+            cart.push(item)
+        }            
+
+        localStorage.setItem('cart', JSON.stringify(cart))
+        window.dispatchEvent(new Event('storage'))
+    }
 
     return (
         <div className="product-container mt-24">
             <div className="container">
                 <div className="product flex justify-center">
-                    <div className="product-img w-1/2 border-2">
-                        <Image src={props.params.image} alt="product" className="w-fit mx-auto p-[16px] max-h-[500px] object-contain" width={500} height={500} layout="responsive" />
+                    <div className="product-img w-1/2 relative">
+                        <div className="img-container w-fit mx-auto relative">
+                            <Image src={imageSrc} alt="product" className="main-image w-fit mx-auto max-h-[500px] object-contain cursor-crosshair" width={500} height={500} layout='responsive '/>
+                        </div>
+                        <div className="alt-images-container mt-2 grid">
+                            {
+                                props.params.galleryImages.map((image, index) => {
+                                    return (
+                                        <div className="alt-image border-2 border-[#e9e9e9] cursor-pointer hover:border-black" onClick={() => { setImageSrc(image) }} key={index}>
+                                            <Image src={image} alt="product" className="w-fit mx-auto max-h-[500px] object-contain" width={500} height={500} layout="responsive" />
+                                        </div>
+                                    )}
+                                )
+                            }
+                        </div>
                     </div>
                     <div className="product-info w-1/2 flex flex-col bg-[#e9e9e9] px-8 py-4 justify-center">
                         <h2 className="product-name font-bold text-2xl mt-5 mb-3">{props.params.name}</h2>
@@ -26,15 +61,15 @@ export default function Product(props) {
                                 </div>
                                 <button className="quantity-btn" onClick={() => setQuantity(quantity + 1)}>+</button>
                             </div>
-                            <p className="product-price font-bold text-2xl">${props.params.price * quantity}</p>
+                            <p className="product-price font-bold text-2xl">${Math.round(props.params.price * 100 * quantity)/ 100}</p>
                         </div>
                         <div className="product-btns flex gap-8">
-                            <button className="atc-btn w-1/2">ADD TO CART</button>
+                            <button className="atc-btn w-1/2" onClick={() => addToCart(quantity)}>ADD TO CART</button>
                             <button className="buy-btn w-1/2">BUY NOW</button>
                         </div>
                     </div>
                 </div>
-                <div className="product-specs flex justify-between w-full gap-3 mt-12">
+                <div className="product-specs grid w-full gap-3 mt-12">
                     <div className="spec bg-[#e9e9e9] p-6 w-full">
                         <h3 className="spec-title font-bold text-xl mb-2">Texture:</h3>
                         <p className="spec-desc">Comfy Material</p>
