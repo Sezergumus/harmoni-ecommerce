@@ -90,7 +90,7 @@ export default function AllProducts() {
                                                 <p>{product.name}</p>
                                             </div>
                                             <div className="category-product-price">
-                                                <p><b>{product.price}</b></p>
+                                                <p><b>${product.price}</b></p>
                                             </div>
                                         </div>
                                     </Link>

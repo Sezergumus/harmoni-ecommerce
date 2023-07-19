@@ -60,7 +60,7 @@ export default function Trending() {
                                                         <p>{product.name}</p>
                                                     </div>
                                                     <div className="trending-product-price">
-                                                        <p><b>{product.price}</b></p>
+                                                        <p><b>${product.price}</b></p>
                                                     </div>
                                                 </div>
                                             </Link>

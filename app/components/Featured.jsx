@@ -26,7 +26,7 @@ export default function Featured() {
                                                 <p>{product.name}</p>
                                             </div>
                                             <div className="featured-product-price">
-                                                <p><b>{product.price}</b></p>
+                                                <p><b>${product.price}</b></p>
                                             </div>
                                         </div>
                                     </Link>
