@@ -9,7 +9,7 @@ import Cart from '@/app/components/Cart'
 import products from '@/json/data.json'
 import { useEffect } from 'react'
 
-export default function page({ params }) {
+export default function Page({ params }) {
     const id = params.id
     const product = products[id]
 
