@@ -30,7 +30,7 @@ export default function Product(props) {
     }
 
     return (
-        <div className="product-container mt-24">
+        <div className="product-container mt-12">
             <div className="container">
                 <div className="product flex justify-center">
                     <div className="product-img w-1/2 relative">

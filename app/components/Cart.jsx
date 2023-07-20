@@ -2,6 +2,7 @@
 
 import React, { useState, useEffect } from 'react'
 import Image from 'next/image'
+import Link from 'next/link'
 
 export default function Cart() {
     const [cartItems, setCartItems] = useState([])
@@ -72,25 +73,27 @@ export default function Cart() {
                             ) : (
                                 cartItems.map((item, index) => {
                                     return (
-                                        <div className="cart-item flex relative" key={index}>
-                                            <div className="cart-item-image w-[25%]">
-                                                <Image src={item.image} width={500} height={500}/>
+                                        <Link href={`/products/${item.link}`} key={index}>
+                                            <div className="cart-item flex relative" key={index}>
+                                                <div className="cart-item-image w-[25%]">
+                                                    <Image src={item.image} width={500} height={500}/>
+                                                </div>
+                                                <div className="cart-item-details flex flex-col align-center justify-center w-[75%] px-4">
+                                                    <h1 className="text-xl font-bold">{item.name}</h1>
+                                                    <div className="cart-quantity-btns flex border border-black w-fit">
+                                                        <button className="cart-quantity-btn" onClick={() => {if(item.quantity > 1){changeQuantity(item.name, "decrease")}}}>-</button>
+                                                        <div className="cart-quantity-container flex items-center justify-center">
+                                                            <div className="cart-quantity text-md">{item.quantity}</div>
+                                                        </div>
+                                                        <button className="cart-quantity-btn" onClick={() => changeQuantity(item.name, "increase")}>+</button>
+                                                    </div>  
+                                                    <p className="text-md font-bold">${Math.round(item.price * 100 * item.quantity) / 100}</p>
+                                                </div>
+                                                <div className="item-remove absolute bottom-4 right-4">
+                                                    <button className="font-bold text-xl" onClick={() => {handleDelete(item.name)}}>X</button>
+                                                </div>
                                             </div>
-                                            <div className="cart-item-details flex flex-col align-center justify-center w-[75%] px-4">
-                                                <h1 className="text-xl font-bold">{item.name}</h1>
-                                                <div className="cart-quantity-btns flex border border-black w-fit">
-                                                    <button className="cart-quantity-btn" onClick={() => {if(item.quantity > 1){changeQuantity(item.name, "decrease")}}}>-</button>
-                                                    <div className="cart-quantity-container flex items-center justify-center">
-                                                        <div className="cart-quantity text-md">{item.quantity}</div>
-                                                    </div>
-                                                    <button className="cart-quantity-btn" onClick={() => changeQuantity(item.name, "increase")}>+</button>
-                                                </div>  
-                                                <p className="text-md font-bold">${Math.round(item.price * 100 * item.quantity) / 100}</p>
-                                            </div>
-                                            <div className="item-remove absolute bottom-4 right-4">
-                                                <button className="font-bold text-xl" onClick={() => {handleDelete(item.name)}}>X</button>
-                                            </div>
-                                        </div>
+                                        </Link>
                                     )
                                 })
                             )

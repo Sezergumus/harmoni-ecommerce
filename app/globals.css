@@ -131,7 +131,7 @@ html{
   min-width: 210px;
 }
 
-.credit a:hover, .footer-links a:hover, .nav-links a:hover{
+.credit a:hover, .footer-links div:hover, .nav-links a:hover{
   color: #FF0000;
   transition: all .15s ease-in;
 }
@@ -220,6 +220,14 @@ html{
 
 .cart-container{
   transition: all .4s ease;
+}
+
+.cart-item{
+  margin-bottom: 1rem;
+}
+
+.cart-items a:last-child .cart-item{
+  margin-bottom: 0;
 }
 
 .open-cart{
